@@ -1,5 +1,6 @@
-#simple glicko implementation 
+#this simple glicko implementation 
 #ref: http://www.glicko.net/glicko/glicko.pdf
+#define your player, opponent and matches in runSimulation()
 
 # init constants
 global q = log(10) / 400
@@ -50,10 +51,11 @@ function [RD] = RD(player, opponents, matches)
   RD = sqrt(((1 / player.RD ^ 2) + 1 / dSqr(player, opponents, matches)) ^ -1)
 endfunction
 
+#use this for 
 #define test function
-function runTest()
+function runSimulation()
   disp("runTest() called")
-  #do test calculations
+  #define opponents here
   opponents(1).r = 1400
   opponents(1).RD = 30
   opponents(2).r = 1550
@@ -61,16 +63,19 @@ function runTest()
   opponents(3).r = 1700
   opponents(3).RD = 300
 
+  #define player here
   player.r = 1500
   player.RD = 200
 
+  #define matches here
+  #matches.opponent = idx to the opponent array
+  #matches.outcome = outcome of the match (1 = win, 0 = loose, 0.5 = draw)
   matches(1).opponent = 1
   matches(1).outcome = 1
   matches(2).opponent = 2
   matches(2).outcome = 0
   matches(3).opponent = 3
   matches(3).outcome = 0
-
 
   testNewR = r(player, opponents, matches);
   testNewRD = RD(player, opponents, matches);
@@ -80,7 +85,7 @@ function runTest()
 endfunction
 
 #run test
-runTest()
+runSimulation()
 
 
 
