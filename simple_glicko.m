@@ -1,9 +1,10 @@
-%simple glicko implementation 
+#simple glicko implementation 
+#ref: http://www.glicko.net/glicko/glicko.pdf
 
-% init constants
+# init constants
 global q = log(10) / 400
 
-%define functions
+#define functions
 function[g] = g(opponent)
   disp("g() Called")
   global q
